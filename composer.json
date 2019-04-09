@@ -25,7 +25,7 @@
     },
     "autoload-dev": {
         "psr-4": { "Freshdesk\\tests\\": "tests/" }
-    }
+    },
     "extra" : {
         "branch-alias" : {
             "dev-solutions" : "1-dev"
