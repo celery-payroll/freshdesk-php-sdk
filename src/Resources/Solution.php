@@ -50,9 +50,6 @@ class Solution extends AbstractResource
         if (empty($endPoint)) {
             $endPoint = 'categories/' . $locale;
         }
-        else{
-            $endPoint = 'folders/' . $id . '/articles/' . $locale . $endPoint;
-        }
 
         return $this->api()->request('GET', $this->endpoint($endPoint), null, $query);
     }
@@ -78,9 +75,6 @@ class Solution extends AbstractResource
     {
         if (empty($endPoint)) {
             $endPoint = 'categories/' . $id . '/folders/' . $locale;
-        }
-        else{
-            $endPoint = 'folders/' . $id . '/articles/' . $locale . $endPoint;
         }
 
         return $this->api()->request('GET', $this->endpoint($endPoint), null, $query, $id);
@@ -108,10 +102,35 @@ class Solution extends AbstractResource
         if (empty($endPoint)) {
             $endPoint = 'folders/' . $id . '/articles/' . $locale;
         }
-        else{
-            $endPoint = 'folders/' . $id . '/articles/' . $locale . $endPoint;
-        }
 
         return $this->api()->request('GET', $this->endpoint($endPoint), null, $query);
+    }
+
+
+    /**
+     * Update an article
+     *
+     * @var article id
+     * @param array $data
+     * @param array|null $query
+     * @return mixed|null
+     * @throws \Freshdesk\Exceptions\AccessDeniedException
+     * @throws \Freshdesk\Exceptions\ApiException
+     * @throws \Freshdesk\Exceptions\AuthenticationException
+     * @throws \Freshdesk\Exceptions\ConflictingStateException
+     * @throws \Freshdesk\Exceptions\NotFoundException
+     * @throws \Freshdesk\Exceptions\RateLimitExceededException
+     * @throws \Freshdesk\Exceptions\UnsupportedContentTypeException
+     * @throws \Freshdesk\Exceptions\MethodNotAllowedException
+     * @throws \Freshdesk\Exceptions\UnsupportedAcceptHeaderException
+     * @throws \Freshdesk\Exceptions\ValidationException
+     */
+     public function updateArticle($id,array $data, $endPoint = null, $locale = null, array $query = null)
+    {
+        if (empty($endPoint)) { 
+            $endPoint = 'articles/' + $id;
+        }
+
+        return $this->api()->request('PUT', $this->endpoint($endPoint), $data, $query);
     }
 }
