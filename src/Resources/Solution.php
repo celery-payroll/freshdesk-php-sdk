@@ -50,6 +50,10 @@ class Solution extends AbstractResource
         if (empty($endPoint)) {
             $endPoint = 'categories/' . $locale;
         }
+        else
+        {
+            $endPoint = 'categories/' . $locale . $endPoint;
+        }
 
         return $this->api()->request('GET', $this->endpoint($endPoint), null, $query);
     }
@@ -76,6 +80,10 @@ class Solution extends AbstractResource
         if (empty($endPoint)) {
             $endPoint = 'categories/' . $id . '/folders/' . $locale;
         }
+        else
+        {
+            $endPoint = 'categories/' . $id . '/folders/' . $locale . $endPoint;
+        }
 
         return $this->api()->request('GET', $this->endpoint($endPoint), null, $query, $id);
     }
@@ -101,6 +109,10 @@ class Solution extends AbstractResource
     {
         if (empty($endPoint)) {
             $endPoint = 'folders/' . $id . '/articles/' . $locale;
+        }
+        else
+        {
+            $endPoint = 'folders/' . $id . '/articles/' . $locale . $endPoint;
         }
 
         return $this->api()->request('GET', $this->endpoint($endPoint), null, $query);
